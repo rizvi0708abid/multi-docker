@@ -3,21 +3,21 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t bornleo07/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t abid72rizvi/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true bornleo07/react-test npm test -- --coverage
+  - docker run -e CI=true abid72rizvi/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t bornleo07/multi-client ./client
-  - docker build -t bornleo07/multi-nginx ./nginx
-  - docker build -t bornleo07/multi-server ./server
-  - docker build -t bornleo07/multi-worker ./worker
+  - docker build -t abid72rizvi/multi-client ./client
+  - docker build -t abid72rizvi/multi-nginx ./nginx
+  - docker build -t abid72rizvi/multi-server ./server
+  - docker build -t abid72rizvi/multi-worker ./worker
   
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "#DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push bornleo07/multi-client
-  - docker push bornleo07/multi-nginx
-  - docker push bornleo07/multi-server
-  - docker push bornleo07/multi-worker
+  - docker push abid72rizvi/multi-client
+  - docker push abid72rizvi/multi-nginx
+  - docker push abid72rizvi/multi-server
+  - docker push abid72rizvi/multi-worker
